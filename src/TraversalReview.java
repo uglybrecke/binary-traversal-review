@@ -355,6 +355,16 @@ public class TraversalReview {
      * @return a string with all the values of the tree concatenated in-order
      */
     public static String concatenate(TreeNode node) {
-        return "";
+        //left root right
+        if (node == null) {
+            return "";
+        }
+        String result = "";
+
+        result += concatenate(node.left);
+        result += node.data;
+        result += concatenate(node.right);
+
+        return result;
     }
 }
