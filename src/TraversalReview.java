@@ -204,7 +204,38 @@ public class TraversalReview {
      * @return whether every node has 0 or 2 children
      */
     public static boolean noSingleChildren(TreeNode node) {
-        return false;
+        //this node is null
+        if (node == null) {
+            return true;
+        }
+
+        //no children
+        if (node.left == null && node.right == null) {
+            return true;
+        }
+
+        //left null child
+        if (node.left == null && node.right != null) {
+            return false;
+        }
+
+        //right null child
+        if (node.right == null && node.left != null) {
+            return false;
+        }
+
+        //move down the tree
+        boolean leftNode = noSingleChildren(node.left);
+        boolean rightNode = noSingleChildren(node.right);
+
+        //compare the children
+        if (leftNode != true || rightNode != true) {
+            return false;
+        }
+
+        //return true if you arrive here
+        return true;
+
     }
 
     /**
